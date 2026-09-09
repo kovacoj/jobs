@@ -9,11 +9,17 @@ FIXTURES = Path(__file__).parent / "fixtures"
 def test_jobs_cz_extracts_public_ad_urls():
     html = (FIXTURES / "jobs_cz_search.html").read_text()
     assert JobsCzSource.parse_search(html) == ["https://www.jobs.cz/rpd/2001381338/?searchId=x"]
+    job = JobsCzSource.parse_search_jobs(html)[0]
+    assert job.company == "Example Labs"
+    assert job.location == "Praha"
 
 
 def test_profesia_extracts_public_ad_urls():
     html = (FIXTURES / "profesia_sk_search.html").read_text()
     assert ProfesiaSkSource.parse_search(html) == ["https://www.profesia.sk/praca/example/O5354989?search_id=x"]
+    job = ProfesiaSkSource.parse_search_jobs(html)[0]
+    assert job.company == "Example Labs"
+    assert job.remote_percentage == 100
 
 
 def test_jobs_cz_reads_structured_detail():

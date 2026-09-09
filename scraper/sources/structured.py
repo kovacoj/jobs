@@ -55,7 +55,7 @@ def compensation(value: object) -> tuple[float | None, float | None, str | None,
 
 
 def remote_percentage(posting: dict, text: str) -> int | None:
-    if posting.get("jobLocationType") == "TELECOMMUTE" or re.search(r"(full|100\s*%)\s*remote|práca iba z domu|plně na dálku", text, re.I):
+    if posting.get("jobLocationType") == "TELECOMMUTE" or re.search(r"^remote work$|(full|100\s*%)\s*remote|práca iba z domu|plně na dálku", text.strip(), re.I):
         return 100
     if re.search(r"home.?office|remote|práce z domova|prácu z domu", text, re.I):
         return 50
