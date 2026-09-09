@@ -1,8 +1,25 @@
 {
   "cooljobs": {
     "success": true,
-    "last_success": "2026-09-09 14:32:46.035565+00:00",
+    "last_success": "2026-09-09 14:46:12.375239+00:00",
     "last_error": null,
     "job_count": 120
+  },
+  "jobs_cz": {
+    "success": true,
+    "last_success": "2026-09-09 14:46:12.375239+00:00",
+    "last_error": null,
+    "job_count": 43
+  },
+  "profesia_sk": {
+    "success": true,
+    "last_success": "2026-09-09 14:46:12.375239+00:00",
+    "last_error": null,
+    "job_count": 80
+  },
+  "linkedin": {
+    "success": false,
+    "unsupported": true,
+    "last_error": "Public pages are not collected when they require login or anti-bot circumvention."
   }
 }

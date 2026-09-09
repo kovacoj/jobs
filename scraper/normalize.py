@@ -9,7 +9,7 @@ CONTRACT_PATTERNS: list[tuple[ContractType, tuple[str, ...]]] = [
     ("dpc", (r"\bdpč\b", r"\bdpc\b", r"dohoda o pracovní činnosti")),
     ("ico_b2b", (r"\bičo\b", r"\bosvč\b", r"živnost", r"na fakturu", r"\bb2b\b", r"contract via cp")),
     ("freelance", (r"freelanc",)),
-    ("employment", (r"\bhpp\b", r"pracovní poměr", r"pracovní smlouva", r"permanent client")),
+    ("employment", (r"\bhpp\b", r"pracovní poměr", r"pracovní smlouva", r"permanent client", r"full[_ -]?time", r"plný úväzok")),
     ("internship", (r"internship", r"stáž", r"trainee")),
 ]
 
@@ -36,6 +36,8 @@ def infer_place(location: str | None) -> tuple[str | None, str | None]:
         return "CZ", "Prague"
     if any(term in value for term in ("brno", "ostrava", "celá čr", "czech", "česk")):
         return "CZ", None
+    if any(term in value for term in ("bratislava", "košice", "slovakia", "slovensko")):
+        return "SK", "Bratislava" if "bratislava" in value else None
     return None, None
 
 

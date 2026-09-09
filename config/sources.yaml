@@ -4,3 +4,26 @@ cooljobs:
   max_pages: 10
   request_delay_seconds: 0.35
   timeout_seconds: 30
+
+jobs_cz:
+  enabled: true
+  search_url: https://www.jobs.cz/prace/
+  queries: [AI Engineer, Data Scientist, Machine Learning, Data Engineer, Python]
+  max_pages_per_query: 2
+  max_details: 80
+  request_delay_seconds: 0.2
+  timeout_seconds: 30
+
+profesia_sk:
+  enabled: true
+  search_url: https://www.profesia.sk/praca/
+  queries: [AI Engineer, Data Scientist, Machine Learning, Data Engineer, Python]
+  max_pages_per_query: 2
+  max_details: 80
+  request_delay_seconds: 0.2
+  timeout_seconds: 30
+
+linkedin:
+  enabled: false
+  status: unsupported
+  reason: Public pages are not collected when they require login or anti-bot circumvention.

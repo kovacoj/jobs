@@ -1,6 +1,14 @@
 # Czech AI/Data Opportunity Radar
 
-A deterministic job collector with profile-based scoring and a static GitHub Pages frontend.
+A deterministic multi-source job collector with profile-based scoring and a static GitHub Pages frontend.
+
+Current sources:
+
+- CoolJobs
+- Jobs.cz
+- Profesia.sk
+
+LinkedIn is recorded as unsupported because reliable collection would require login or anti-bot circumvention. Additional sources can be added behind the `JobSource` interface without changing the pipeline.
 
 ## Run locally
 

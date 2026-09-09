@@ -14,5 +14,27 @@
     "discovered": 120,
     "active": 120,
     "error": null
+  },
+  {
+    "ran_at": "2026-09-09 14:46:12.375239+00:00",
+    "success": true,
+    "sources": {
+      "cooljobs": {
+        "success": true,
+        "discovered": 120,
+        "error": null
+      },
+      "jobs_cz": {
+        "success": true,
+        "discovered": 43,
+        "error": null
+      },
+      "profesia_sk": {
+        "success": true,
+        "discovered": 80,
+        "error": null
+      }
+    },
+    "active": 243
   }
 ]
