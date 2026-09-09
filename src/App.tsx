@@ -69,7 +69,7 @@ function App() {
   const [sourceStatus, setSourceStatus] = useState<SourceStatus>({});
   const [error, setError] = useState("");
   const [contract, setContract] = useState<Contract | "all">("all");
-  const [minimumScore, setMinimumScore] = useState(50);
+  const [minimumScore, setMinimumScore] = useState(0);
   const [remoteOnly, setRemoteOnly] = useState(false);
   const [source, setSource] = useState("all");
   const [sort, setSort] = useState("score");
