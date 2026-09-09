@@ -1,0 +1,6 @@
+cooljobs:
+  enabled: true
+  search_url: https://www.cooljobs.eu/en/search-job/1115.html
+  max_pages: 10
+  request_delay_seconds: 0.35
+  timeout_seconds: 30

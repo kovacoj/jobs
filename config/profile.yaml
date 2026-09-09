@@ -1,0 +1,38 @@
+geography:
+  countries: [CZ]
+  preferred_locations: [Prague]
+  include_remote_from_other_countries: false
+  remote:
+    allowed: true
+    preferred: true
+
+contract_types:
+  priority: [ico_b2b, freelance, dpp, dpc, employment]
+
+roles:
+  preferred:
+    - AI Engineer
+    - Machine Learning Engineer
+    - Data Scientist
+    - Applied AI Engineer
+    - AI/Data Engineer
+    - GenAI Engineer
+    - LLM Engineer
+    - Data Engineer
+    - Research Engineer
+
+skills:
+  core: [Python, machine learning, data science, LLM, generative AI, AI agents, RAG, APIs]
+  strong: [PyTorch, FastAPI, SQL, Docker, Git, Azure, n8n, numerical computing]
+  bonus: [scientific computing, numerical methods, HPC, OpenFOAM, optimization, C++, MPI, PETSc]
+
+preferences:
+  part_time_bonus: true
+  remote_bonus: true
+  project_work_bonus: true
+  ico_bonus: true
+
+seniority:
+  accepted: [junior, mid, senior]
+
+languages: [Czech, Slovak, English]
