@@ -59,12 +59,14 @@ jobs:
         run: |
           cp collector/data/jobs.json site/public/data/jobs.json
           cp collector/data/source_status.json site/public/data/source_status.json
+          cp collector/data/jobs.json site/data/jobs.json
+          cp collector/data/source_status.json site/data/source_status.json
           cd site
-          if git diff --quiet -- public/data; then
+          if git diff --quiet -- public/data data; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data
+          git add public/data data
           git commit -m "chore(data): refresh opportunities"
           git push
