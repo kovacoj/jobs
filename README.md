@@ -22,6 +22,29 @@ The scraper writes `data/jobs.json`, `data/runs.json`, and `data/source_status.j
 
 The frontend is maintained separately on the `gh-pages` branch. GitHub Actions refreshes data every four hours and commits changed JSON to that branch, from which GitHub Pages deploys directly.
 
+## Agent discovery vertical slice
+
+The new discovery path uses the existing local Siemens OpenCode provider and a read-only `job-discovery` agent. The sample skills in `tests/fixtures/sample_profile.json` are placeholders intended to be replaced.
+
+Start the loopback-only OpenCode service:
+
+```bash
+OPENCODE_ENABLE_EXA=1 \
+OPENCODE_SERVER_PASSWORD='<local-secret>' \
+opencode serve --hostname 127.0.0.1 --port 4096
+```
+
+Run validated discovery from another shell using the same password:
+
+```bash
+OPENCODE_SERVER_PASSWORD='<local-secret>' \
+.venv/bin/python scripts/run_discovery.py \
+  --input tests/fixtures/sample_profile.json \
+  --output runtime/responses/test.json
+```
+
+The wrapper captures OpenCode JSON events, validates the final response with Pydantic, retries one malformed model response, and writes output only after validation. `runtime/` is local and ignored by Git.
+
 ## Design boundaries
 
 - Source collection and parsing are deterministic Python.

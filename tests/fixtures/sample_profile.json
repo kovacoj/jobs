@@ -1,0 +1,29 @@
+{
+  "skills": [
+    "Python",
+    "machine learning",
+    "PyTorch",
+    "LLM applications",
+    "AI agents",
+    "RAG",
+    "FastAPI",
+    "SQL",
+    "Docker",
+    "Azure",
+    "numerical optimization"
+  ],
+  "preferred_roles": [
+    "AI Engineer",
+    "Machine Learning Engineer",
+    "Data Scientist",
+    "LLM Engineer",
+    "AI Automation Engineer",
+    "Data Engineer"
+  ],
+  "contract_preferences": ["IČO", "OSVČ", "B2B", "freelance", "DPP", "DPČ", "part-time"],
+  "countries": ["CZ"],
+  "remote_worldwide": true,
+  "recent_queries": [],
+  "existing_urls": [],
+  "minimum_results": 5
+}

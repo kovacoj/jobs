@@ -4,3 +4,9 @@ __pycache__/
 *.egg-info/
 dist/
 node_modules/
+runtime/
+cv/generated/
+*.aux
+*.log
+*.out
+.env

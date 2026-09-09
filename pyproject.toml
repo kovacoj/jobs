@@ -14,7 +14,7 @@ dependencies = [
 dev = ["pytest>=8.3,<9"]
 
 [tool.setuptools.packages.find]
-include = ["scraper*"]
+include = ["scraper*", "worker*", "scripts*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
