@@ -4,5 +4,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/jobs/",
-  build: { outDir: ".", emptyOutDir: false },
+  root: "src",
+  publicDir: "../public",
+  build: { outDir: "..", emptyOutDir: false },
 });

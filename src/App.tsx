@@ -30,7 +30,7 @@ type JobData = {
   jobs: Job[];
 };
 
-type SourceStatus = Record<string, { success: boolean; last_success?: string; last_error?: string | null; job_count?: number }>;
+type SourceStatus = Record<string, { success: boolean; unsupported?: boolean; last_success?: string; last_error?: string | null; job_count?: number }>;
 
 const contracts: { value: Contract | "all"; label: string }[] = [
   { value: "all", label: "All contracts" },
@@ -71,6 +71,7 @@ function App() {
   const [contract, setContract] = useState<Contract | "all">("all");
   const [minimumScore, setMinimumScore] = useState(50);
   const [remoteOnly, setRemoteOnly] = useState(false);
+  const [source, setSource] = useState("all");
   const [sort, setSort] = useState("score");
 
   useEffect(() => {
@@ -93,6 +94,7 @@ function App() {
     .filter((job) => contract === "all" || job.contract_type === contract)
     .filter((job) => job.score >= minimumScore)
     .filter((job) => !remoteOnly || job.remote_percentage === 100)
+    .filter((job) => source === "all" || job.source === source)
     .sort((a, b) => sort === "newest"
       ? new Date(b.first_seen_at).getTime() - new Date(a.first_seen_at).getTime()
       : sort === "rate"
@@ -128,6 +130,7 @@ function App() {
         <div className="control-row">
           <label>Minimum score <strong>{minimumScore}</strong><input type="range" min="0" max="100" step="5" value={minimumScore} onChange={(event) => setMinimumScore(Number(event.target.value))} /></label>
           <label className="check"><input type="checkbox" checked={remoteOnly} onChange={(event) => setRemoteOnly(event.target.checked)} /> Remote only</label>
+          <label>Source <select value={source} onChange={(event) => setSource(event.target.value)}><option value="all">All sources</option>{Object.keys(sourceStatus).filter((name) => !sourceStatus[name].unsupported).map((name) => <option value={name} key={name}>{name}</option>)}</select></label>
           <label>Order <select value={sort} onChange={(event) => setSort(event.target.value)}><option value="score">Best match</option><option value="newest">Newest</option><option value="rate">Highest rate</option></select></label>
         </div>
       </section>
