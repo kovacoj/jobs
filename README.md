@@ -24,7 +24,7 @@ The frontend is maintained separately on the `gh-pages` branch. GitHub Actions r
 
 ## Agent discovery vertical slice
 
-The new discovery path uses the existing local Siemens OpenCode provider and a read-only `job-discovery` agent. The sample skills in `tests/fixtures/sample_profile.json` are placeholders intended to be replaced.
+The discovery path uses the existing local MetaCentrum OpenCode provider and a read-only `job-discovery` agent. MetaCentrum is the temporary inference backend until Siemens gateway connectivity is restored. The sample skills in `tests/fixtures/sample_profile.json` are placeholders intended to be replaced.
 
 Start the loopback-only OpenCode service:
 

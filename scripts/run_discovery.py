@@ -11,7 +11,7 @@ from worker.models import DiscoveryRequest, DiscoveryResponse
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SERVER = "http://127.0.0.1:4096"
-DEFAULT_MODEL = "siemens/code-agentic"
+DEFAULT_MODEL = "metacentrum/glm-5.2"
 
 
 def build_prompt(request: DiscoveryRequest, previous_error: str | None = None) -> str:

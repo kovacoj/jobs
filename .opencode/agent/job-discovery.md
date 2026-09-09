@@ -1,7 +1,7 @@
 ---
 description: Researches current paid AI and data opportunities across the public web and returns strict JSON.
 mode: primary
-model: siemens/code-agentic
+model: metacentrum/glm-5.2
 temperature: 0.1
 permission:
   read:
