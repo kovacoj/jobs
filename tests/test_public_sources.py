@@ -2,6 +2,7 @@ from pathlib import Path
 
 from scraper.sources.jobs_cz import JobsCzSource
 from scraper.sources.profesia_sk import ProfesiaSkSource
+from scraper.normalize import normalize_contract
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -40,3 +41,16 @@ def test_profesia_reads_structured_detail():
     assert job.source_id == "5354989"
     assert job.title == "Data Scientist / ML Engineer"
     assert job.contract_text == "FULL_TIME"
+
+
+def test_profesia_reads_slovak_labeled_fields_without_json_ld():
+    html = (FIXTURES / "profesia_sk_labeled_detail.html").read_text()
+    job = ProfesiaSkSource.parse_detail(html, "https://www.profesia.sk/praca/example/O5354989")
+    assert job.location == "Bratislava, Slovensko (Pozícia umožňuje občasnú prácu z domu)"
+    assert job.contract_text == "plný úväzok"
+    assert normalize_contract(job.contract_text)[0] == "employment"
+    assert job.remote_percentage == 50
+    assert job.salary_min == 3000
+    assert job.currency == "EUR"
+    assert job.compensation_period == "month"
+    assert "machine learning" in job.description

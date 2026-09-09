@@ -69,6 +69,24 @@ class ProfesiaSkSource(JobSource):
         if not title:
             raise ValueError("missing job title")
         description = plain_text(posting.get("description"))
+        if not description:
+            description = "\n".join(section.get_text("\n", strip=True) for section in soup.select(".details-desc"))
         page_text = soup.get_text(" ", strip=True)
         salary_min, salary_max, currency, period = compensation(posting.get("baseSalary"))
-        return RawOpportunity(source="profesia_sk", source_id=match.group(1) if match else None, title=title, company=organization_name(posting.get("hiringOrganization")), url=url.split("?")[0], description=description, location=location_text(posting.get("jobLocation")), remote_percentage=remote_percentage(posting, page_text), contract_text=str(posting.get("employmentType", "")), salary_min=salary_min, salary_max=salary_max, currency=currency, compensation_period=period)
+        location = location_text(posting.get("jobLocation"))
+        contract_text = str(posting.get("employmentType", ""))
+        if location_node := soup.select_one(".upper-info-box-item-regions .upper-info-box-content"):
+            location = location or location_node.get_text(" ", strip=True)
+        if contract_node := soup.select_one(".upper-info-box-item-jobtype .upper-info-box-content"):
+            contract_text = contract_text or contract_node.get_text(" ", strip=True)
+        if salary_min is None:
+            salary_node = soup.select_one(".salary-range, .salary-desc")
+            salary_min, salary_max, currency, period = _parse_salary(salary_node.get_text(" ", strip=True) if salary_node else "")
+        return RawOpportunity(source="profesia_sk", source_id=match.group(1) if match else None, title=title, company=organization_name(posting.get("hiringOrganization")), url=url.split("?")[0], description=description, location=location, remote_percentage=remote_percentage(posting, location or page_text), contract_text=contract_text, salary_min=salary_min, salary_max=salary_max, currency=currency, compensation_period=period)
+
+
+def _parse_salary(text: str) -> tuple[float | None, float | None, str | None, str | None]:
+    currency_match = re.search(r"\b(EUR|CZK)\b", text, re.I)
+    amounts = [float(re.sub(r"\D", "", value)) for value in re.findall(r"\d[\d\s]*", text) if re.sub(r"\D", "", value)]
+    period = "month" if re.search(r"mesiac|month", text, re.I) else "hour" if re.search(r"hodin|hour", text, re.I) else None
+    return (min(amounts), max(amounts), currency_match.group(1).upper() if currency_match else None, period) if amounts else (None, None, currency_match.group(1).upper() if currency_match else None, period)
