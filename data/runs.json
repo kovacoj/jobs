@@ -6,5 +6,13 @@
     "discovered": 20,
     "active": 20,
     "error": null
+  },
+  {
+    "ran_at": "2026-09-09 14:32:46.035565+00:00",
+    "success": true,
+    "source": "cooljobs",
+    "discovered": 120,
+    "active": 120,
+    "error": null
   }
 ]
