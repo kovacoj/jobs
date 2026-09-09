@@ -72,7 +72,7 @@ function App() {
   const [minimumScore, setMinimumScore] = useState(0);
   const [remoteOnly, setRemoteOnly] = useState(false);
   const [source, setSource] = useState("all");
-  const [sort, setSort] = useState("score");
+  const [sort, setSort] = useState("project");
 
   useEffect(() => {
     Promise.all([
@@ -95,7 +95,9 @@ function App() {
     .filter((job) => job.score >= minimumScore)
     .filter((job) => !remoteOnly || job.remote_percentage === 100)
     .filter((job) => source === "all" || job.source === source)
-    .sort((a, b) => sort === "newest"
+    .sort((a, b) => sort === "project"
+      ? projectPriority(b) - projectPriority(a) || b.score - a.score || new Date(b.first_seen_at).getTime() - new Date(a.first_seen_at).getTime()
+      : sort === "newest"
       ? new Date(b.first_seen_at).getTime() - new Date(a.first_seen_at).getTime()
       : sort === "rate"
         ? (b.salary_max ?? -1) - (a.salary_max ?? -1)
@@ -108,7 +110,7 @@ function App() {
         <div className="title-row">
           <div>
             <h1>Opportunity<br /><em>Radar</em></h1>
-            <p className="intro">AI, data and engineering contracts, ranked against your technical profile.</p>
+            <p className="intro">AI, data and engineering opportunities, with project contracts ranked ahead of full-time employment.</p>
           </div>
           <div className="scan-stamp">
             <span>LAST SWEEP</span>
@@ -131,7 +133,7 @@ function App() {
           <label>Minimum score <strong>{minimumScore}</strong><input type="range" min="0" max="100" step="5" value={minimumScore} onChange={(event) => setMinimumScore(Number(event.target.value))} /></label>
           <label className="check"><input type="checkbox" checked={remoteOnly} onChange={(event) => setRemoteOnly(event.target.checked)} /> Remote only</label>
           <label>Source <select value={source} onChange={(event) => setSource(event.target.value)}><option value="all">All sources</option>{Object.keys(sourceStatus).filter((name) => !sourceStatus[name].unsupported).map((name) => <option value={name} key={name}>{name}</option>)}</select></label>
-          <label>Order <select value={sort} onChange={(event) => setSort(event.target.value)}><option value="score">Best match</option><option value="newest">Newest</option><option value="rate">Highest rate</option></select></label>
+          <label>Order <select value={sort} onChange={(event) => setSort(event.target.value)}><option value="project">Project fit</option><option value="score">Profile score</option><option value="newest">Newest</option><option value="rate">Highest rate</option></select></label>
         </div>
       </section>
 
@@ -175,3 +177,10 @@ function App() {
 }
 
 export default App;
+
+function projectPriority(job: Job) {
+  const contract = { ico_b2b: 50, freelance: 50, dpp: 35, dpc: 35, unknown: 15, employment: 0, internship: -10 }[job.contract_type];
+  const allocation = job.allocation_md_month == null ? 0 : Math.max(0, 20 - job.allocation_md_month);
+  const duration = job.project_duration_months == null ? 0 : 10;
+  return contract + allocation + duration;
+}
