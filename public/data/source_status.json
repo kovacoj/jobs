@@ -1,19 +1,19 @@
 {
   "cooljobs": {
     "success": true,
-    "last_success": "2026-09-15 04:52:15.454393+00:00",
+    "last_success": "2026-09-15 13:31:55.251975+00:00",
     "last_error": null,
-    "job_count": 130
+    "job_count": 134
   },
   "jobs_cz": {
     "success": true,
-    "last_success": "2026-09-15 04:52:15.454393+00:00",
+    "last_success": "2026-09-15 13:31:55.251975+00:00",
     "last_error": null,
     "job_count": 80
   },
   "profesia_sk": {
     "success": true,
-    "last_success": "2026-09-15 04:52:15.454393+00:00",
+    "last_success": "2026-09-15 13:31:55.251975+00:00",
     "last_error": null,
     "job_count": 80
   },
