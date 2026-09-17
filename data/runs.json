@@ -828,5 +828,27 @@
       }
     },
     "active": 304
+  },
+  {
+    "ran_at": "2026-09-17 19:43:15.546071+00:00",
+    "success": true,
+    "sources": {
+      "cooljobs": {
+        "success": true,
+        "discovered": 132,
+        "error": null
+      },
+      "jobs_cz": {
+        "success": true,
+        "discovered": 80,
+        "error": null
+      },
+      "profesia_sk": {
+        "success": true,
+        "discovered": 80,
+        "error": null
+      }
+    },
+    "active": 303
   }
 ]
