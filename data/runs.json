@@ -1246,5 +1246,27 @@
       }
     },
     "active": 303
+  },
+  {
+    "ran_at": "2026-09-22 19:44:11.859127+00:00",
+    "success": false,
+    "sources": {
+      "cooljobs": {
+        "success": true,
+        "discovered": 126,
+        "error": null
+      },
+      "jobs_cz": {
+        "success": true,
+        "discovered": 80,
+        "error": null
+      },
+      "profesia_sk": {
+        "success": false,
+        "discovered": 0,
+        "error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://www.profesia.sk/praca/?search_anywhere=AI+Engineer&page_num=1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+      }
+    },
+    "active": 280
   }
 ]
