@@ -1444,5 +1444,27 @@
       }
     },
     "active": 299
+  },
+  {
+    "ran_at": "2026-09-24 23:11:53.740211+00:00",
+    "success": false,
+    "sources": {
+      "cooljobs": {
+        "success": true,
+        "discovered": 133,
+        "error": null
+      },
+      "jobs_cz": {
+        "success": false,
+        "discovered": 0,
+        "error": "HTTPStatusError: Client error '404 Not Found' for url 'https://www.jobs.cz/prace/?q%5B%5D=Python&page=2'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+      },
+      "profesia_sk": {
+        "success": true,
+        "discovered": 80,
+        "error": null
+      }
+    },
+    "active": 294
   }
 ]
