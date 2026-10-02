@@ -1,13 +1,13 @@
 {
   "cooljobs": {
     "success": true,
-    "last_success": "2026-10-02 14:43:28.591284+00:00",
+    "last_success": "2026-10-02 20:43:11.052709+00:00",
     "last_error": null,
     "job_count": 113
   },
   "jobs_cz": {
     "success": true,
-    "last_success": "2026-10-02 14:43:28.591284+00:00",
+    "last_success": "2026-10-02 20:43:11.052709+00:00",
     "last_error": null,
     "job_count": 80,
     "last_attempt": "2026-09-24 23:11:53.740211+00:00"
@@ -17,7 +17,7 @@
     "last_success": "2026-09-30 05:30:08.795392+00:00",
     "last_error": "HTTPStatusError: Client error '403 Forbidden' for url 'https://www.profesia.sk/praca/?search_anywhere=AI+Engineer&page_num=1'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403",
     "job_count": 80,
-    "last_attempt": "2026-10-02 14:43:28.591284+00:00"
+    "last_attempt": "2026-10-02 20:43:11.052709+00:00"
   },
   "linkedin": {
     "success": false,
